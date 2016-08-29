@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity Diploma - Copy.CSharp", "Unity Diploma - Copy.CSharp.csproj", "{822FA421-3B40-1E79-83E5-F33982656C0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity Diploma - Copy.CSharp.Editor", "Unity Diploma - Copy.CSharp.Editor.csproj", "{AF4BF3A8-F2FF-6838-DA0A-8B59B4B0CB38}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{822FA421-3B40-1E79-83E5-F33982656C0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{822FA421-3B40-1E79-83E5-F33982656C0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{822FA421-3B40-1E79-83E5-F33982656C0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{822FA421-3B40-1E79-83E5-F33982656C0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF4BF3A8-F2FF-6838-DA0A-8B59B4B0CB38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF4BF3A8-F2FF-6838-DA0A-8B59B4B0CB38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF4BF3A8-F2FF-6838-DA0A-8B59B4B0CB38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF4BF3A8-F2FF-6838-DA0A-8B59B4B0CB38}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

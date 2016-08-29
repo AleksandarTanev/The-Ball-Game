@@ -1,0 +1,13 @@
+E:\Dimploma\Unity Project\Temp\bin\Debug\Assembly-CSharp.dll
+E:\Dimploma\Unity Project\Temp\bin\Debug\Assembly-CSharp.pdb
+E:\Dimploma\Unity Project\Temp\bin\Debug\LeapCSharp.NET3.5.dll
+E:\Dimploma\Unity Project\Temp\bin\Debug\UnityEditor.dll
+E:\Dimploma\Unity Project\Temp\bin\Debug\UnityEngine.dll
+E:\Dimploma\Unity Project\Temp\bin\Debug\UnityEngine.UI.dll
+E:\Dimploma\Unity Project\Temp\bin\Debug\Mono.Cecil.dll
+E:\Dimploma\Unity Project\Temp\bin\Debug\nunit.framework.dll
+E:\Dimploma\Unity Project\Temp\bin\Debug\Unity.DataContract.dll
+E:\Dimploma\Unity Project\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+E:\Dimploma\Unity Project\obj\Debug\Assembly-CSharp-vs.csprojResolveAssemblyReference.cache
+E:\Dimploma\Unity Project\obj\Debug\Assembly-CSharp.dll
+E:\Dimploma\Unity Project\obj\Debug\Assembly-CSharp.pdb

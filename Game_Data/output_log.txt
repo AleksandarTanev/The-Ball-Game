@@ -1,0 +1,35 @@
+Initialize engine version: 5.3.5f1 (960ebf59018a)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 9.0c [nvd3dum.dll 10.18.13.6472]
+    Renderer: NVIDIA GeForce GTX 960
+    Vendor:   NVIDIA
+    VRAM:     3072 MB (via DXGI)
+    Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=0 INTZ=1 NULL=1 RESZ=0 SlowINTZ=0
+Begin MonoManager ReloadAssembly
+Platform assembly: E:\Unity Diploma - Copy\Game_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading E:\Unity Diploma - Copy\Game_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: E:\Unity Diploma - Copy\Game_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading E:\Unity Diploma - Copy\Game_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: E:\Unity Diploma - Copy\Game_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading E:\Unity Diploma - Copy\Game_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: E:\Unity Diploma - Copy\Game_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading E:\Unity Diploma - Copy\Game_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: E:\Unity Diploma - Copy\Game_Data\Managed\LeapCSharp.NET3.5.dll (this message is harmless)
+Loading E:\Unity Diploma - Copy\Game_Data\Managed\LeapCSharp.NET3.5.dll into Unity Child Domain
+- Completed reload, in  0.220 seconds
+Platform assembly: E:\Unity Diploma - Copy\Game_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: E:\Unity Diploma - Copy\Game_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 3840x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.500355 ms
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 347c -> priority: 1 
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 5.159109 ms
+
+Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 1689.
+Total: 0.416962 ms (FindLiveObjects: 0.053884 ms CreateObjectMapping: 0.075053 ms MarkObjects: 0.269421 ms  DeleteObjects: 0.018282 ms)
+
