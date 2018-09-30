@@ -1,107 +1,89 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using Leap;
 using UnityEngine.UI;
 
-
-public class WeaponMovement : MonoBehaviour {
-
-    // for animation 
+public class WeaponMovement : MonoBehaviour
+{
     public GameObject WeaponAnimation;
     public GameObject Bullet;
     public float ShootForce;
     public Transform ShootPosition;
-    // ...
 
     public Text DisplayHandMovement;
     public GameObject CoordinationObject;
 
-    Controller controller;
+    private Controller controller;
 
-    void Start()
+    private Frame frame;
+    private List<Hand> hands;
+    private Hand weaponHand;
+    private Finger weaponFinger;
+
+    private void Start()
     {
         controller = new Controller();
     }
 
-
-    void LateUpdate()
+    private void FixedUpdate()
     {
+        frame = controller.Frame();
+        hands = frame.Hands;
 
-
-        Frame frame = controller.Frame();
-
-        HandList hands = frame.Hands;
-        Hand WeaponHand = hands[0];
-        Finger WeaponFinger = hands[0].Fingers[0];
-
-        int LeftHandIndex = -1;
-        int RightHandIndex = -1;
-
-        for (int i = 0; i < hands.Count; i++)
+        if (hands.Count == 0)
         {
-            if (hands[i].IsRight == true)
-            {
-                RightHandIndex = i;
-            }
-            else if (hands[i].IsLeft == true)
-            {
-                LeftHandIndex = i;
-            }
+            return;
         }
 
+        weaponHand = null;
+        weaponFinger = null;
 
+        int leftHandIndex = GetLeftHandIndex(hands);
+        int rightHandIndex = GetRightHandIndex(hands);
 
-
-        int countL = 0;
-        int flag = 0;
         int countR = 0;
-
-        if (RightHandIndex != -1)
+        if (rightHandIndex != -1)
         {
-            for (int i = 0; i < hands[RightHandIndex].Fingers.Count; i++)
+            for (int i = 0; i < hands[rightHandIndex].Fingers.Count; i++)
             {
-                if (hands[RightHandIndex].Fingers[i].IsExtended == true)
+                if (hands[rightHandIndex].Fingers[i].IsExtended == true)
                 {
                     countR++;
                 }
             }
-            if (countR == 1 && hands[RightHandIndex].Fingers[1].IsExtended == true)
+            if (countR == 1 && hands[rightHandIndex].Fingers[1].IsExtended == true)
             {
-                WeaponHand = hands[RightHandIndex];
-                WeaponFinger = WeaponHand.Fingers[1];
-                flag = 1;
+                weaponHand = hands[rightHandIndex];
+                weaponFinger = weaponHand.Fingers[1];
 
-                FingerInfo(WeaponFinger);
+                InfoOnScreenController.PostFingerInfo(weaponFinger);
             }
         }
-        
-        if (LeftHandIndex != -1)
+
+        int countL = 0;
+        if (leftHandIndex != -1)
         {
-            for (int i = 0; i < hands[LeftHandIndex].Fingers.Count; i++)
+            for (int i = 0; i < hands[leftHandIndex].Fingers.Count; i++)
             {
-                if (hands[LeftHandIndex].Fingers[i].IsExtended == true)
+                if (hands[leftHandIndex].Fingers[i].IsExtended == true)
                 {
                     countL++;
                 }
-
             }
 
-            if (countL == 1 && hands[LeftHandIndex].Fingers[1].IsExtended == true)
+            if (countL == 1 && hands[leftHandIndex].Fingers[1].IsExtended == true)
             {
-                WeaponHand = hands[LeftHandIndex];
-                WeaponFinger = WeaponHand.Fingers[1];
-                flag = 1;
+                weaponHand = hands[leftHandIndex];
+                weaponFinger = weaponHand.Fingers[1];
 
-                FingerInfo(WeaponFinger);
+                InfoOnScreenController.PostFingerInfo(weaponFinger);
             }
         }
 
-
-
-        float xDirection = WeaponFinger.Direction.x;
-
-        if (flag == 1)
+        if (weaponHand != null)
         {
+            float xDirection = weaponFinger.Direction.x;
+
             if (xDirection < -0.45)
             {
                 CoordinationObject.transform.localEulerAngles = new Vector3(0, -45, 0);
@@ -114,47 +96,46 @@ public class WeaponMovement : MonoBehaviour {
             {
                 CoordinationObject.transform.localEulerAngles = new Vector3(0, xDirection * 100, 0);
             }
+
+            if (weaponFinger.Direction.y > 0.4 && !WeaponAnimation.GetComponent<Animation>().isPlaying)
+            {
+                WeaponAnimation.GetComponent<Animation>()["Shoot"].speed = 10;
+                WeaponAnimation.GetComponent<Animation>().Play("Shoot");
+
+                GameObject InstanceBullet = (GameObject)Instantiate(Bullet, ShootPosition.transform.position, ShootPosition.rotation);
+                InstanceBullet.GetComponent<Rigidbody>().AddForce(ShootPosition.forward * ShootForce);
+                Destroy(InstanceBullet, 2);
+            }
         }
+    }
+    
+    private int GetLeftHandIndex(List<Hand> hands)
+    {
+        int index = -1;
 
-
-
-
-        if (WeaponFinger.Direction.y > 0.4 && !WeaponAnimation.GetComponent<Animation>().isPlaying && flag == 1)
+        for (int i = 0; i < hands.Count; i++)
         {
-            WeaponAnimation.GetComponent<Animation>()["Shoot"].speed = 10;
-            WeaponAnimation.GetComponent<Animation>().Play("Shoot");
-
-
-            GameObject InstanceBullet = (GameObject)Instantiate(Bullet, ShootPosition.transform.position, ShootPosition.rotation);
-            InstanceBullet.GetComponent<Rigidbody>().AddForce(ShootPosition.forward * ShootForce);
-            Destroy(InstanceBullet, 2);
+            if (hands[i].IsLeft)
+            {
+                index = i;
+            }
         }
 
-
-
+        return index;
     }
 
-    private void HandInfo(Hand firstHand)
+    private int GetRightHandIndex(List<Hand> hands)
     {
-        float pitch = firstHand.Direction.Pitch;
-        float yaw = firstHand.Direction.Yaw;
-        float roll = firstHand.PalmNormal.Roll;
+        int index = -1;
 
-        DisplayHandMovement.text = "Pitch: " + pitch.ToString() + "\n";
-        DisplayHandMovement.text += "Yaw: " + yaw.ToString() + "\n";
-        DisplayHandMovement.text += "Roll: " + roll.ToString();
-    }
+        for (int i = 0; i < hands.Count; i++)
+        {
+            if (hands[i].IsRight)
+            {
+                index = i;
+            }
+        }
 
-    private void FingerInfo(Finger Finger)
-    {
-        float x = Finger.Direction.x;
-        float y = Finger.Direction.y;
-        float z = Finger.Direction.z;
-        float Yaw = Finger.Direction.Yaw;
-
-        DisplayHandMovement.text = "x: " + x.ToString() + "\n";
-        DisplayHandMovement.text += "y: " + y.ToString() + "\n";
-        DisplayHandMovement.text += "z: " + z.ToString() + "\n";
-        DisplayHandMovement.text += "Yaw: " + Yaw.ToString();
+        return index;
     }
 }

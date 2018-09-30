@@ -1,11 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class CameraFollow : MonoBehaviour
 {
-
-    public GameObject gameObject;
-
     public float x;
     public float y;
     public float z;
